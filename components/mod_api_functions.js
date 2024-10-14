@@ -4,6 +4,16 @@ import { Xcontainer } from "./models/xcontainer.js"
 
 export const mod_api_functions = {
   methods: {
+
+    api_board_dimension_set(dim, promote_range){
+      // Board.dimension = dim
+      // Board.danger_zone_size = promote_range
+      
+      // this.xcontainer.board.dimension = dim
+      // this.xcontainer.board.danger_zone_size = promote_range
+      // console.log(Board.dimension, Board.danger_zone_size)
+
+    },
     // 盤面をシャッフルする
     api_board_shuffle() {
       this.xcontainer.shuffle_apply(Board.dimension)

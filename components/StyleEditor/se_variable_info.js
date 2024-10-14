@@ -41,6 +41,8 @@ export class SeVariableInfo extends ApplicationMemoryRecord {
       { key: "sp_board_radius", default: 5, },
       { key: "sp_board_padding", default: 0.015, },
 
+      { key: "sp_board_dimension", default: 9, },
+      { key: "sp_board_promote_range", default: 3, },
       { key: "sp_board_dimension_w", default: 9, },
       { key: "sp_board_dimension_h", default: 9, },
       { key: "sp_layout", default: "horizontal", },

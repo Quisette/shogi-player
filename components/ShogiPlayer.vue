@@ -78,6 +78,8 @@ export default {
   ],
 
   props: {
+    sp_board_dimension: { type: Number, default: 9, }, // dimension
+    sp_board_promote_range: { type: Number, default: 3, }, // promote row
     sp_board_dimension_w: { type: Number, default: 9, }, // 盤のセル数(W)
     sp_board_dimension_h: { type: Number, default: 9, }, // 盤のセル数(H)
 
@@ -268,8 +270,13 @@ export default {
         this.xcontainer_setup_for_edit_mode()
       }
     }
+    if (this.sp_board_dimension != 9) {
+      this.api_board_dimension_set(this.sp_board_dimension, this.sp_board_promote_range)
+    }
   },
   watch: {
+    
+    
     // 外から中への反映シリーズ
     sp_piece_variant(v) { this.mut_piece_variant = v },
     sp_board_variant(v) { this.mut_board_variant = v },

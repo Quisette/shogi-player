@@ -29,14 +29,15 @@ export const mod_lifted_piece = {
         const x = this.$data._lp_latest_mouse_event.clientX
         const y = this.$data._lp_latest_mouse_event.clientY
         this.element_vector_set(this.$data._LiftedPieceElement, {x, y})
+
         // }
       }
     },
 
     // マウス位置に表示する駒の生成
     lp_create(event, soldier) {
-      this.event_call("ev_action_piece_lift")
-
+      
+      this.event_call("ev_action_piece_lift", soldier)
       this.lp_destroy()
       this.lp_element_create(soldier)
 

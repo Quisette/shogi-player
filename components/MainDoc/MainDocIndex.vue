@@ -68,6 +68,9 @@ export default {
   .is_piece_variant_portella
     --sp_board_piece_size: 1.0
 
+  .is_piece_variant_portella_2moji
+  --sp_board_piece_size: 1.0
+
 .MainDocIndex
   &.STAGE-development
     .container, .section, .columns, .columns

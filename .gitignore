@@ -101,3 +101,4 @@ vue.conifg.inspect.*
 # web_component
 web_component/labo/*/dist
 
+dist/

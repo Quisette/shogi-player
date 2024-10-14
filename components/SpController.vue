@@ -39,6 +39,7 @@ $sp_controller_font_min: 8px       // ただしこれ以上は小さくしない
 
     +workaround_buttons_connect
     .button
+      background: #DDDDDD
       margin-bottom: 0
       font-size: unquote("max(calc(var(--sp_board_h) * #{$sp_controller_font_size}), #{$sp_controller_font_min})") ! important
       &:focus

@@ -49,6 +49,18 @@ export default {
   components: {
     PieceTap,
   },
+  created(){
+    // console.log(this.TheSp.sp_board_dimension,this.TheSp.sp_board_promote_range )
+    // Board.dimension = this.TheSp.sp_board_dimension
+    // Board.danger_zone_size = this.TheSp.sp_board_promote_range
+    // console.log(Board.dimension, Board.danger_zone_size)
+  },
+  beforeMount() {
+    
+  },
+  mounted() {
+    
+  },
   beforeUpdate() {
     this.TheSp.$data._MainBoardRenderCount += 1
   },
@@ -65,8 +77,8 @@ export default {
       return list
     },
     logical_xy(x, y) {
-      x = x + Board.dimension - this.TheSp.sp_board_dimension_w
-      y = y + Board.dimension - this.TheSp.sp_board_dimension_h
+      x = x + this.TheSp.sp_board_dimension  - this.TheSp.sp_board_dimension_w
+      y = y + this.TheSp.sp_board_dimension  - this.TheSp.sp_board_dimension_h
       if (this.TheSp.fliped) {
         x = this.TheSp.sp_board_dimension_w - x - 1
         y = this.TheSp.sp_board_dimension_h - y - 1

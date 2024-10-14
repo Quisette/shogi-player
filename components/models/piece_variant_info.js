@@ -8,6 +8,7 @@ export class PieceVariantInfo extends ApplicationMemoryRecord {
       { key: "paper",    name: "紙面風",   format: "SVG", },
       { key: "zuan",     name: "図案駒",   format: "PNG", },
       { key: "portella", name: "Portella", format: "PNG", },
+      { key: "portella_2moji", name: "Portella ２文字", format: "PNG", },
     ]
   }
 }

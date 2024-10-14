@@ -90,9 +90,9 @@ export class Soldier {
   get danger_zone_p() {
     if (this.location.key === "black") {
       return this.place.y < Board.danger_zone_size
-    } else {
+    } 
       return this.place.y >= (Board.dimension - Board.danger_zone_size)
-    }
+    
   }
 
   get css_class_list() {

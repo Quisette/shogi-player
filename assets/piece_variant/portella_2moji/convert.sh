@@ -1,0 +1,32 @@
+#!/bin/sh
+cp original/0gy.png BK0.png
+cp original/0hi.png BR0.png
+cp original/0ka.png BB0.png
+cp original/0ki.png BG0.png
+cp original/0gi.png BS0.png
+cp original/0ke.png BN0.png
+cp original/0ky.png BL0.png
+cp original/0fu.png BP0.png
+cp original/0gy.png BX0.png
+cp original/0ry.png BR1.png
+cp original/0um.png BB1.png
+cp original/0ng.png BS1.png
+cp original/0nk.png BN1.png
+cp original/0ny.png BL1.png
+cp original/0to.png BP1.png
+
+cp original/1gy.png WK0.png
+cp original/1hi.png WR0.png
+cp original/1ka.png WB0.png
+cp original/1ki.png WG0.png
+cp original/1gi.png WS0.png
+cp original/1ke.png WN0.png
+cp original/1ky.png WL0.png
+cp original/1fu.png WP0.png
+cp original/1gy.png WX0.png
+cp original/1ry.png WR1.png
+cp original/1um.png WB1.png
+cp original/1ng.png WS1.png
+cp original/1nk.png WN1.png
+cp original/1ny.png WL1.png
+cp original/1to.png WP1.png

@@ -2,6 +2,7 @@
 @import "piece_variant/paper.sass"
 @import "piece_variant/zuan.sass"
 @import "piece_variant/portella.sass"
+@import "piece_variant/portella_2moji.sass"
 
 %piece_black_only
   .is_position_north
@@ -30,3 +31,7 @@
   // 画像自体に影が付いている
   &.is_piece_variant_portella
     +piece_variant_portella_all
+
+  &.is_piece_variant_portella_2moji
+    +piece_variant_portella_2moji_all
+
