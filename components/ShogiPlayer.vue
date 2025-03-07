@@ -99,14 +99,14 @@ export default {
     // 駒の種類
     sp_piece_variant: {
       type: String,
-      default: "nureyon",
+      default: "portella_2moji",
       validator(value) { return PieceVariantInfo.keys.includes(value) },
     },
 
     // 盤の種類
     sp_board_variant: {
       type: String,
-      default: "none",
+      default: "wood_bright",
       validator(value) { return BoardVariantInfo.keys.includes(value) },
     },
 
