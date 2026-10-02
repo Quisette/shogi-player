@@ -5,14 +5,37 @@ import { Xcontainer } from "./models/xcontainer.js"
 export const mod_api_functions = {
   methods: {
 
-    api_board_dimension_set(dim, promote_range){
-      // Board.dimension = dim
-      // Board.danger_zone_size = promote_range
-      
-      // this.xcontainer.board.dimension = dim
-      // this.xcontainer.board.danger_zone_size = promote_range
-      // console.log(Board.dimension, Board.danger_zone_size)
+    // 盤の寸法と成れる段数を変更して局面を作り直す
+    // 通常は sp_board_dimension, sp_board_promote_range を使うこと
+    api_board_dimension_set(dimension, promote_range = Board.danger_zone_size) {
+      if (Board.configure({dimension: dimension, danger_zone_size: promote_range})) {
+        this.xcontainer_rebuild()
+      }
+    },
 
+    // props の盤の寸法と成れる段数を Board に反映する
+    // Board の設定は全インスタンス共通なので、同じページに寸法の異なる盤を並べることはできない
+    board_config_apply() {
+      return Board.configure({
+        dimension: this.sp_board_dimension,
+        danger_zone_size: this.sp_board_promote_range,
+      })
+    },
+
+    // kifu_source から局面を作り直す
+    xcontainer_rebuild() {
+      this.lifted_piece_cancel() // 駒を持った状態で sp_body を切り替えられたとき駒を持ってない状態にする
+
+      if (this.edit_p) {
+        this.xcontainer_setup_for_edit_mode()
+        return
+      }
+
+      this.xcontainer_setup(this.sp_turn)
+
+      if (this.play_p) {
+        this.play_mode_setup_from("view")
+      }
     },
     // 盤面をシャッフルする
     api_board_shuffle() {

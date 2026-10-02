@@ -3,6 +3,7 @@
 /.bin
 /.nuxt
 /.github
+/scripts
 /docs
 /experiment
 /main_doc

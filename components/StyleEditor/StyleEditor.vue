@@ -247,6 +247,8 @@ export default {
 
     sp_params() {
       let params = {}
+      params.sp_board_dimension      = this.sp_board_dimension
+      params.sp_board_promote_range  = this.sp_board_promote_range
       params.sp_board_dimension_w    = this.sp_board_dimension_w
       params.sp_board_dimension_h    = this.sp_board_dimension_h
       params.sp_layout               = this.sp_layout

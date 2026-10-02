@@ -68,6 +68,8 @@ export class SfenParser extends ParserBase {
       XRegExp.forEach(e, XRegExp("(?<promoted>\\+?)(?<piece>\\S)"), (m, i) => {
         if (/\d+/.test(m.piece)) {
           x += Number(m.piece)
+        } else if (Place.xy_invalid_p(x, y)) {
+          x++                   // 盤の寸法より外の駒は無視する
         } else {
           const soldier = new Soldier({
             place: new Place([x, y]),

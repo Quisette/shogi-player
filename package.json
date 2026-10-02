@@ -38,7 +38,13 @@
     "japanese-chess"
   ],
   "scripts": {
-    "test": "jest"
+    "setup": "npm ci && npm ci --prefix web_component",
+    "dev": "nuxt dev -p 4001",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "build": "node scripts/build.js",
+    "build:wc": "node scripts/build.js wc",
+    "build:lib": "node scripts/build.js lib"
   },
   "dependencies": {
     "beetleshine": "^0.0.9",

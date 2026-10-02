@@ -17,9 +17,9 @@
     // ・そこでもし背景に画像を配置したとすると、その上の敷き詰めた黒は透明でなければならない
     // ・つまり、黒を敷き詰める必要あるのと、画像盤の上は透明でないといけないことが両立できない
     table.BoardMatrix
-      tr.BoardRow(v-for="(_, y) in TheSp.sp_board_dimension_h")
+      tr.BoardRow(v-for="(_, y) in TheSp.board_view_h")
         td.BoardCell(
-          v-for="(_, x) in TheSp.sp_board_dimension_w"
+          v-for="(_, x) in TheSp.board_view_w"
           data-resize_observer_id="BoardCell"
           @pointerdown="TheSp.board_cell_pointerdown_handle(logical_xy(x, y), $event)"
           @click.stop.prevent="TheSp.board_cell_left_click(logical_xy(x, y), $event)"
@@ -49,18 +49,6 @@ export default {
   components: {
     PieceTap,
   },
-  created(){
-    // console.log(this.TheSp.sp_board_dimension,this.TheSp.sp_board_promote_range )
-    // Board.dimension = this.TheSp.sp_board_dimension
-    // Board.danger_zone_size = this.TheSp.sp_board_promote_range
-    // console.log(Board.dimension, Board.danger_zone_size)
-  },
-  beforeMount() {
-    
-  },
-  mounted() {
-    
-  },
   beforeUpdate() {
     this.TheSp.$data._MainBoardRenderCount += 1
   },
@@ -76,14 +64,14 @@ export default {
       }
       return list
     },
+    // 表示上のセル位置 → 盤上の座標
+    // 表示するセル数が盤の寸法より小さいときは先手から見て右下の領域を表示する
     logical_xy(x, y) {
-      x = x + this.TheSp.sp_board_dimension  - this.TheSp.sp_board_dimension_w
-      y = y + this.TheSp.sp_board_dimension  - this.TheSp.sp_board_dimension_h
+      const dimension = this.TheSp.sp_board_dimension
       if (this.TheSp.fliped) {
-        x = this.TheSp.sp_board_dimension_w - x - 1
-        y = this.TheSp.sp_board_dimension_h - y - 1
+        return [dimension - x - 1, dimension - y - 1]
       }
-      return [x, y]
+      return [x + dimension - this.TheSp.board_view_w, y + dimension - this.TheSp.board_view_h]
     },
   },
 }

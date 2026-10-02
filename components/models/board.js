@@ -3,13 +3,54 @@ import Vue from 'vue'
 import { Soldier } from "./soldier"
 import { Place } from "./place.js"
 
+// 盤の寸法と成れる段数 (全インスタンス共通)
+const board_config = {
+  dimension: 9,
+  danger_zone_size: 3,
+}
+
 export class Board {
+  static DIMENSION_DEFAULT = 9
+  static DANGER_ZONE_SIZE_DEFAULT = 3
+  static DIMENSION_MAX = 9 // SFEN の段は a-i, 漢数字は一-九 までしかないため
+
   static get dimension() {
-    return 9
+    return board_config.dimension
+  }
+
+  static set dimension(v) {
+    this.configure({dimension: v})
   }
 
   static get danger_zone_size() {
-    return 3
+    return board_config.danger_zone_size
+  }
+
+  static set danger_zone_size(v) {
+    this.configure({danger_zone_size: v})
+  }
+
+  // Board.configure({dimension: 5, danger_zone_size: 1})
+  // 盤の寸法(1..9)と成れる段数(0..dimension)を設定する
+  // 戻り値は変更があったか
+  static configure(params = {}) {
+    const dimension = params.dimension ?? board_config.dimension
+    let danger_zone_size = params.danger_zone_size ?? board_config.danger_zone_size
+    if (!Number.isInteger(dimension) || dimension < 1 || dimension > this.DIMENSION_MAX) {
+      throw new Error(`dimension must be an integer between 1 and ${this.DIMENSION_MAX}: ${dimension}`)
+    }
+    if (!Number.isInteger(danger_zone_size) || danger_zone_size < 0) {
+      throw new Error(`danger_zone_size must be a non-negative integer: ${danger_zone_size}`)
+    }
+    danger_zone_size = Math.min(danger_zone_size, dimension)
+    const changed = (board_config.dimension !== dimension || board_config.danger_zone_size !== danger_zone_size)
+    board_config.dimension = dimension
+    board_config.danger_zone_size = danger_zone_size
+    return changed
+  }
+
+  static reset_config() {
+    return this.configure({dimension: this.DIMENSION_DEFAULT, danger_zone_size: this.DANGER_ZONE_SIZE_DEFAULT})
   }
 
   static vector_flip(x, y) {
