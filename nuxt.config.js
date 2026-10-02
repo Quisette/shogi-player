@@ -24,14 +24,20 @@ export default {
   target: "static",
 
   router: {
-    base: process.env.NODE_ENV === "production" ? "/shogi-player/" : "/",
+    // SP_ROUTER_BASE: npm run site で docs サイトの /playground/ に組み込むときに使う
+    base: process.env.SP_ROUTER_BASE || (process.env.NODE_ENV === "production" ? "/shogi-player/" : "/"),
     // https://ja.nuxtjs.org/api/configuration-router/#trailingslash
     // trailingSlash: false,
   },
 
   generate: {
     subFolders: false,  // false: xxx.html true: xxx/index.html
-    dir: "docs",        // for github pages
+    dir: process.env.SP_GENERATE_DIR || "docs", // for github pages
+    // 変更検知のため srcDir 以下を全部読むので別プロジェクトは除外する
+    // (除外しないと web_component/node_modules/shogi-player -> .. のリンクを辿り続けてメモリ不足で落ちる)
+    cache: {
+      ignore: ["web_component", "main_doc", "shogi-player-*-sample", "trash", "experiment", "dist", "docs"],
+    },
   },
 
   /*

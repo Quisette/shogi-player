@@ -1,6 +1,11 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 # https://app.netlify.com/sites/shogi-player/overview
+#
+# ドキュメント・dist/・プレイグラウンドを1つのサイトとして生成する (scripts/site.js)
 
 [build]
   publish = "docs/.vuepress/dist/"
-  command = "rake build"
+  command = "cd .. && npm run setup && npm run site"
+
+[build.environment]
+  NODE_VERSION = "22"

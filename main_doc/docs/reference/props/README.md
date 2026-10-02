@@ -525,6 +525,48 @@ Default: `false`
 * 有効にすると基本的な反則の操作はできなくなる
 * 有効にすると将棋ウォーズのようになる
 
+## 盤のサイズ
+
+### `sp_board_dimension`
+
+Type: `Number`
+Default: `9`
+
+盤の一辺のセル数 (1..9)
+
+* 縦横とも同じ数になる
+* 盤に収まる SFEN を渡すこと。盤の外にはみ出した駒は捨てる
+* 設定はページ内のすべての shogi-player で共通のため、寸法の異なる盤を同じページに並べることはできない
+* 実行中に変更すると局面を作り直す
+
+```html
+<shogi-player-wc
+  sp_body="position sfen rbsgk/4p/5/P4/KGSBR b - 1"
+  sp_board_dimension="5"
+  sp_board_promote_range="1"
+  ></shogi-player-wc>
+```
+
+### `sp_board_promote_range`
+
+Type: `Number`
+Default: `3`
+
+成れる段数 (0..`sp_board_dimension`)
+
+* 相手側から数えた段数
+* 0 にすると成れなくなる
+* `sp_board_dimension` と同じく全インスタンス共通
+
+### `sp_board_dimension_w` / `sp_board_dimension_h`
+
+Type: `Number`
+Default: `9`
+
+表示するセル数 (横 / 縦)
+
+* `sp_board_dimension` を超える値は `sp_board_dimension` に切り詰める
+
 ## Web Components 専用
 
 ### `sp_pass_style`
