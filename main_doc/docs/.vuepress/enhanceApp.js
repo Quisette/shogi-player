@@ -10,5 +10,12 @@ export default ({
   router, // the router instance for the app
   siteData // site metadata
 }) => {
-  // ...apply enhancements for the site.
+  // /playground/ は VuePress ではなく Nuxt で生成した別アプリ (npm run site) なのでページごと読み込む
+  router.beforeEach((to, from, next) => {
+    if (typeof window !== "undefined" && to.path.startsWith("/playground")) {
+      window.location.href = to.fullPath
+      return
+    }
+    next()
+  })
 }

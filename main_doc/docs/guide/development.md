@@ -15,7 +15,8 @@ Requires the Node version in `.node-version`. Run everything from the repository
 | `npm run build -- lib:production` | Build a single target (`wc`, `lib`, `wc:production`, ...) |
 | `npm run docs:setup` | Install the documentation site's dependencies (`main_doc/`) |
 | `npm run docs:dev` | This documentation site at http://localhost:4002 |
-| `npm run docs:build` | Build the documentation site into `main_doc/docs/.vuepress/dist/` |
+| `npm run docs:build` | Build only the VuePress pages into `main_doc/docs/.vuepress/dist/` |
+| `npm run site` | Build the whole site: `dist/`, the documentation, and the playground under `/playground/` (`--skip-build` reuses the current `dist/`) |
 
 The `Rakefile` keeps the maintainer's shortcuts (`rake s`, `rake t`, `rake dist`, `rake d`, `rake release`), which wrap the same commands.
 
@@ -30,8 +31,8 @@ CI (`.github/workflows/ci.yml`) runs the tests and a library build on every push
 | `dist/` | Built files published to npm and the CDN (`wc/` and `lib/`, each `production/` and `development/`) |
 | `test/` | Jest specs |
 | `pages/`, `layouts/`, `plugins/`, `nuxt.config.js` | Nuxt demo app (`npm run dev`) |
-| `docs/` | **Generated** output of the Nuxt demo, served at https://akicho8.github.io/shogi-player/. Not documentation; do not edit by hand |
-| `main_doc/` | This documentation site (VuePress), deployed to Netlify. Examples live in `main_doc/docs/.vuepress/public/examples/` |
+| `docs/` | **Generated** output of the old standalone Nuxt demo (`rake old_doc:deploy`). Not documentation; do not edit by hand |
+| `main_doc/` | This documentation site (VuePress). Examples live in `main_doc/docs/.vuepress/public/examples/` |
 | `assets/` | Piece, board and location images plus shared Sass |
 | `shogi-player-*-sample/` | Minimal integrations for Nuxt, Vue 2, Vue 2 + UMD and Svelte |
 | `experiment/`, `trash/` | Old prototypes, kept for reference only |
@@ -40,7 +41,18 @@ CI (`.github/workflows/ci.yml`) runs the tests and a library build on every push
 
 `rake release` runs the whole sequence: build `dist/`, `npm version patch`, rewrite every `shogi-player@x.y.z` CDN reference in the repository, `pnpm publish`, push tags, redeploy the Nuxt demo to `docs/`, and check the CDN.
 
-The documentation site is deployed by Netlify from `main_doc/` (`main_doc/netlify.toml`).
+## The site
+
+`npm run site` produces one static site in `main_doc/docs/.vuepress/dist/`:
+
+| Path | Contents |
+|------|----------|
+| `/` | These docs (VuePress) |
+| `/dist/` | The Web Components and library builds from `npm run build` |
+| `/guide/demo` | Both builds side by side, loaded from `/dist/` |
+| `/playground/` | The Nuxt app in `pages/`, including the style editor |
+
+Netlify runs it from `main_doc/netlify.toml`, so the docs and demos always use the code on the deployed branch rather than the last npm release.
 
 ## Coding notes
 

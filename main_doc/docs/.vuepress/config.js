@@ -90,11 +90,11 @@ module.exports = {
 
       {
         text: "Demo",
-        link: "https://akicho8.github.io/shogi-player/",
-      },
-      {
-        text: "スタイルエディタ",
-        link: "https://akicho8.github.io/shogi-player/style-editor",
+        items: [
+          { text: "2つのビルド",      link: "/guide/demo/",              },
+          { text: "プレイグラウンド", link: "/playground/",              },
+          { text: "スタイルエディタ", link: "/playground/style-editor.html",  },
+        ],
       },
     ],
     sidebar: {
@@ -105,6 +105,7 @@ module.exports = {
           children: [
             "",
             "usage",
+            "demo",
             "customize",
           ],
         },

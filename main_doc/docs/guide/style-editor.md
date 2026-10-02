@@ -1,8 +1,8 @@
 # スタイルエディタ
 
-<iframe src="https://akicho8.github.io/shogi-player/style-editor" frameborder="0" width="100%" height="1000" />
+<iframe src="/playground/style-editor.html" frameborder="0" width="100%" height="1000" />
 
-[単体で開く](https://akicho8.github.io/shogi-player/style-editor)
+[単体で開く](/playground/style-editor.html)
 
 ## ギャラリー
 

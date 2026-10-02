@@ -22,6 +22,7 @@ All documentation lives in [`main_doc/docs/`](main_doc/docs/) and is published a
 | Topic | Page |
 |-------|------|
 | Introduction and features | [guide/README.md](main_doc/docs/guide/README.md) |
+| Demo of both builds (Web Components and Vue library) | [guide/demo.md](main_doc/docs/guide/demo.md) |
 | Usage | [guide/usage.md](main_doc/docs/guide/usage.md) |
 | Modes | [view](main_doc/docs/guide/view-mode.md) · [play](main_doc/docs/guide/play-mode.md) · [edit](main_doc/docs/guide/edit-mode.md) |
 | Embedding in frameworks | [guide/build.md](main_doc/docs/guide/build.md) |
@@ -54,6 +55,7 @@ npm test           # run the Jest suite
 npm run dev        # demo/playground at http://localhost:4001
 npm run build      # regenerate dist/ (wc + lib, production + development)
 npm run docs:dev   # documentation site at http://localhost:4002
+npm run site       # build the whole site (docs + dist/ + playground) into main_doc/docs/.vuepress/dist/
 ```
 
 CI (`.github/workflows/ci.yml`) runs the tests and a library build on every push and pull request. See the [development guide](main_doc/docs/guide/development.md) for the repository layout, release steps and coding notes.
