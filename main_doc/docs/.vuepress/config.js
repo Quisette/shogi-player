@@ -126,6 +126,7 @@ module.exports = {
             "build",
             "style-editor",
             "debug",
+            "development",
             "credit",
           ],
         },

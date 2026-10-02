@@ -1,10 +1,10 @@
 # shogi-player-vue2-sample
 
-これは [shogi-player](https://akicho8.github.io/shogi-player/) を Vue (2) cli で使うサンプルです
+Minimal example of using shogi-player (`ShogiPlayer.vue`) with Vue 2 (vue/cli).
 
-## 実行方法 ##
-
-```
+```sh
 pnpm i
 pnpm run dev
 ```
+
+See the [build guide](../main_doc/docs/guide/build.md) for the points to watch when embedding.

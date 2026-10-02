@@ -44,7 +44,10 @@
     "test:watch": "jest --watch",
     "build": "node scripts/build.js",
     "build:wc": "node scripts/build.js wc",
-    "build:lib": "node scripts/build.js lib"
+    "build:lib": "node scripts/build.js lib",
+    "docs:setup": "npm install --prefix main_doc",
+    "docs:dev": "npm run dev --prefix main_doc",
+    "docs:build": "npm run build --prefix main_doc"
   },
   "dependencies": {
     "beetleshine": "^0.0.9",

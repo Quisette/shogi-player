@@ -12,6 +12,13 @@ sidebar: auto
 
 ## Public Methods ##
 
+### `api_board_dimension_set(dimension: number, promote_range?: number)`
+
+盤の一辺のセル数と成れる段数を変更して局面を作り直す
+
+* 通常は [sp_board_dimension](/reference/props/#sp-board-dimension) と [sp_board_promote_range](/reference/props/#sp-board-promote-range) を使う
+* `promote_range` を省略すると現在の値のまま
+
 ### `api_board_shuffle()`
 
 盤上の駒をシャッフルしてランダムに配置し直す

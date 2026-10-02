@@ -1,3 +1,10 @@
 # shogi-player-nuxt-sample
 
-これは [shogi-player](https://akicho8.github.io/shogi-player/) を Nuxt.js で使うサンプルです
+Minimal example of using shogi-player (`ShogiPlayer.vue`) in Nuxt.js 2.
+
+```sh
+pnpm i
+pnpm run dev    # http://localhost:4007
+```
+
+See the [build guide](../main_doc/docs/guide/build.md) for the points to watch when embedding.
