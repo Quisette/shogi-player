@@ -78,10 +78,10 @@ export default {
   ],
 
   props: {
-    sp_board_dimension: { type: Number, default: 9, }, // dimension
-    sp_board_promote_range: { type: Number, default: 3, }, // promote row
-    sp_board_dimension_w: { type: Number, default: 9, }, // 盤のセル数(W)
-    sp_board_dimension_h: { type: Number, default: 9, }, // 盤のセル数(H)
+    sp_board_dimension:     { type: Number, default: 9, }, // 盤の一辺のセル数 (1..9)
+    sp_board_promote_range: { type: Number, default: 3, }, // 成れる段数 (0..sp_board_dimension)
+    sp_board_dimension_w:   { type: Number, default: 9, }, // 表示するセル数(W) sp_board_dimension を超えない
+    sp_board_dimension_h:   { type: Number, default: 9, }, // 表示するセル数(H) sp_board_dimension を超えない
 
     // レイアウト
     sp_layout: {
@@ -256,6 +256,7 @@ export default {
   },
 
   created() {
+    this.board_config_apply() // 局面を作る前に盤の寸法を確定させておくこと
     if (this.view_p) {
       this.xcontainer_setup(this.sp_turn)
     }
@@ -270,9 +271,6 @@ export default {
         this.xcontainer_setup_for_edit_mode()
       }
     }
-    if (this.sp_board_dimension != 9) {
-      this.api_board_dimension_set(this.sp_board_dimension, this.sp_board_promote_range)
-    }
   },
   watch: {
     
@@ -285,19 +283,12 @@ export default {
     // そうしないと sp_turn と sp_body を同時に変更したとき
     // sp_turn, sp_body の順に反映されて局面が1つ前になってしまう
     kifu_source() {
-      this.lifted_piece_cancel() // 駒を持った状態で sp_body を切り替えられたとき駒を持ってない状態にする
-
-      if (this.edit_p) {
-        this.xcontainer_setup_for_edit_mode()
-        return
-      }
-
-      this.xcontainer_setup(this.sp_turn)
-
-      if (this.play_p) {
-        this.play_mode_setup_from("view")
-      }
+      this.xcontainer_rebuild()
     },
+
+    // 盤の寸法や成れる段数が変更されたら局面を作り直す
+    sp_board_dimension()     { this.board_config_apply() && this.xcontainer_rebuild() },
+    sp_board_promote_range() { this.board_config_apply() && this.xcontainer_rebuild() },
 
     // kifu_source の watch より後に記述すること
     sp_turn() {
@@ -554,11 +545,15 @@ export default {
     component_style() {
       return {
         ...this.sp_pass_style_native, // Web Components のための無理矢理スタイルを渡すためのもの
-        "--sp_board_dimension_w": this.sp_board_dimension_w,
-        "--sp_board_dimension_h": this.sp_board_dimension_h,
+        "--sp_board_dimension_w": this.board_view_w,
+        "--sp_board_dimension_h": this.board_view_h,
         ...this.ro_css_variables_hash,  // sp_cell_w 等
       }
     },
+
+    // 実際に表示するセル数 (盤の寸法より大きくはできない)
+    board_view_w() { return Math.min(this.sp_board_dimension_w, this.sp_board_dimension) },
+    board_view_h() { return Math.min(this.sp_board_dimension_h, this.sp_board_dimension) },
 
     kifu_source() {
       return this.sp_body || this.init_preset_sfen || "position startpos"

@@ -102,11 +102,18 @@
         b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_vertical_gap" :min="0" :max="1.0" :step="0.01")
       .columns.mt-4.mb-2
         .column.py-0
-          b-field(custom-class="is-small" label="セル数(W)")
-            b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_dimension_w" :min="1" :max="12")
+          b-field(custom-class="is-small" label="盤の寸法")
+            b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_dimension" :min="1" :max="9")
         .column.py-0
-          b-field(custom-class="is-small" label="セル数(H)")
-            b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_dimension_h" :min="1" :max="12")
+          b-field(custom-class="is-small" label="成れる段数")
+            b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_promote_range" :min="0" :max="TheSe.sp_board_dimension")
+      .columns.mb-2
+        .column.py-0
+          b-field(custom-class="is-small" label="表示セル数(W)")
+            b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_dimension_w" :min="1" :max="TheSe.sp_board_dimension")
+        .column.py-0
+          b-field(custom-class="is-small" label="表示セル数(H)")
+            b-slider(v-bind="TheSe.slider_attrs" v-model="TheSe.sp_board_dimension_h" :min="1" :max="TheSe.sp_board_dimension")
 
     .box
       SeTitle(name="盤グリッド")

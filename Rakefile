@@ -10,10 +10,11 @@ task :default => :test
 desc "setup"
 task :setup do
   system! <<~EOT
-  arm64 nodenv install -f 16.19.1
+  nodenv install -s $(cat .node-version)
   npm i -g pnpm
   npm i -g npm-check-updates
   nodenv which node
+  npm run setup
   EOT
 end
 
@@ -21,7 +22,7 @@ task :s => :server
 desc "[s] server"
 task :server do
   system! <<~EOT
-  nuxt dev -p 4001 --open
+  npm run dev -- --open
   EOT
 end
 
@@ -29,7 +30,7 @@ task :t => :test
 desc "[t] test"
 task :test do
   system! <<~EOT
-  jest
+  npm test
   EOT
 end
 
@@ -46,12 +47,7 @@ end
 desc "dist/ に CDN 用の Web Components を生成する"
 task :dist do
   system! <<~EOT
-  cd web_component
-  pnpm i
-  SP_TARGET=wc  vue-cli-service build --mode production  --target wc  --dest ../dist/wc/production   --inline-vue --name shogi-player-wc src/components/ShogiPlayerWc.vue
-  SP_TARGET=wc  vue-cli-service build --mode development --target wc  --dest ../dist/wc/development  --inline-vue --name shogi-player-wc src/components/ShogiPlayerWc.vue
-  SP_TARGET=lib vue-cli-service build --mode production  --target lib --dest ../dist/lib/production  --name ShogiPlayer --filename shogi-player src/components/ShogiPlayerLib.vue
-  SP_TARGET=lib vue-cli-service build --mode development --target lib --dest ../dist/lib/development --name ShogiPlayer --filename shogi-player src/components/ShogiPlayerLib.vue
+  npm run build
   # git add -A && git commit -m "[chore][skip ci] dist/* 生成" --allow-empty
   EOT
 end

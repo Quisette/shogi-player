@@ -61,6 +61,10 @@ export default {
     sp_layer:                          { type: Boolean, }, // レイヤー確認(デバッグ用)
     sp_piece_variant:                  { type: String,  }, // 駒の種類
     sp_board_variant:                  { type: String,  }, // 盤の種類
+    sp_board_dimension:                { type: Number,  }, // 盤の一辺のセル数 (1..9)
+    sp_board_promote_range:            { type: Number,  }, // 成れる段数
+    sp_board_dimension_w:              { type: Number,  }, // 表示するセル数(W)
+    sp_board_dimension_h:              { type: Number,  }, // 表示するセル数(H)
     sp_mobile_vertical:                { type: Boolean, }, // モバイル時に自動的に縦配置に切り替える
     sp_location_click_behavior:        { type: String,  }, // ☗☖をタップしたとき視点を切り替える
     sp_debug:                          { type: Boolean, }, // デバッグモード
